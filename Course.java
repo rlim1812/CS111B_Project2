@@ -78,17 +78,5 @@ public class Course {
 		String s = courseName +", "+ " class has a maximum number of " + maxNumStudents + " students." + "It currently has " + currentEnrollment + " students.";
 		return s;
 	}
-	
-	public static void main (String[] args){
-		
-		for (int i = 1; i <= 100; i++){
 
-		    if (i % 5 == 0) {
-
-		        System.out.println(i);
-
-		    }
-
-		}
-	}
 }
