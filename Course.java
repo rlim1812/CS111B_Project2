@@ -1,4 +1,4 @@
-package Project2;
+
 import java.util.*;
 
 public class Course {
@@ -10,20 +10,22 @@ public class Course {
 	private Student[] roster;
 	private String courseName;	
 	private int currentEnrollment;
-	private int maxNumStudents;
+	private int maxNumStudents = 5;
 	private int index;
+	private int numStudentsInArray;
 	
 	//constructor
-	public Course(String initialCourseName, int initialMaxNumStudents, int initialCurrentEnrollment){
-		courseName = initialCourseName;
-		if (initialMaxNumStudents > 0){
-			maxNumStudents = initialMaxNumStudents;
+	public Course(String newCourseName, int newMaxNumStudents, int newCurrentEnrollment){
+		courseName = newCourseName;
+		if (newMaxNumStudents > 0){
+			maxNumStudents = newMaxNumStudents;
 		} 
-		if (initialCurrentEnrollment >= 0){
-			currentEnrollment = initialCurrentEnrollment;
+		if (newCurrentEnrollment >= 0){
+			currentEnrollment = newCurrentEnrollment;
 		} 
-		roster = new Student[initialMaxNumStudents];
+		roster = new Student[newMaxNumStudents];
 		index = 0;
+		numStudentsInArray = 0;
 	}
 	
 	//getters and setters
@@ -54,18 +56,42 @@ public class Course {
 	public boolean addStudent (Student s){
 		boolean successfulAdd;
 		
-		if (currentEnrollment < maxNumStudents){
+		if (currentEnrollment< maxNumStudents){
 			roster[index] = s;
 			index++;
 			currentEnrollment++;
 			successfulAdd = true;
 		} else {
+			System.out.println(s.getName() + " cannot be added.");
 			successfulAdd = false;
+
 		}
 		
 		return successfulAdd;
 	}
-	
+	public boolean dropStudent(Student s)
+	{
+		boolean successfulDrop = false;
+		int drop_index = 0 ;
+		for(int i = 0; i < currentEnrollment; i++)
+		{
+			if (roster[i] == s)
+			{
+				drop_index += i;
+				currentEnrollment--;
+				
+				successfulDrop = true;
+			}
+		}
+		for(int j = drop_index; j < currentEnrollment; j++)
+		{
+				roster[j] = roster[j+1];
+		}
+		roster[currentEnrollment] = null;
+		index = currentEnrollment;
+ 		
+		return successfulDrop;
+	}
 	public void printRoster(){
 		   
 		   //print out number of students enrolled
@@ -79,7 +105,8 @@ public class Course {
 		   
 		   //print out text representation of each of the student objects
 		   for (int i = 0; i < currentEnrollment; i++){
-			   System.out.print(roster[i].toString());
+			   System.out.println(roster[i].toString());
+			   
 		   }
 		   
 	}
