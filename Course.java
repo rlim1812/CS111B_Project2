@@ -68,6 +68,24 @@ public class Course {
 		return successfulAdd;
 	}
 	
+	public void printRoster(){
+		   
+		   //print out number of students enrolled
+		   System.out.println("There are " + currentEnrollment + " students currently enrolled in the class");
+		   
+		   //check if there are no students
+		   if(currentEnrollment == 0)
+		   {
+		        System.out.println("Error. There is no student enrolled yet.");    
+		   }
+		   
+		   //print out text representation of each of the student objects
+		   for (int i = 0; i < numStudentsInArray; i++){
+			   System.out.print(roster[i].toString());
+		   }
+		   
+	}
+	
 	//toString method
 	public String toString(){
 		String s = courseName +", "+ " class has a maximum number of " + maxNumStudents + " students." + "It currently has " + currentEnrollment + " students.";
