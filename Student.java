@@ -1,4 +1,10 @@
-
+/*
+ * Ryan Lim
+ * Kyaw Tun
+ * Yu-Hsiang Huang
+ * Anthony Wong
+ * 
+ */
 public class Student {
 	
 		private String name;
@@ -34,7 +40,7 @@ public class Student {
 		}
 		public String toString()
 		{
-			String b = name + "" + ID;
+			String b = name + " " + ID;
 			return b;
 		}
 }
