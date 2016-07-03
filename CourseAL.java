@@ -5,23 +5,24 @@
  * Anthony Wong
  * 
  */
+
 import java.util.*;
 
-public class Course {
+public class CourseAL {
 	
 	Scanner scan = new Scanner(System.in);
 	
 	//instance variables
-	
-	private Student[] roster;
+	private ArrayList<Student> rosterlist;
+	//private Student[] roster;
 	private String courseName;	
 	private int currentEnrollment;
-	private int maxNumStudents = 5;
+	private int maxNumStudents;
 	private int index;
-	
+	private int numStudentsInArray;
 	
 	//constructor
-	public Course(String newCourseName, int newMaxNumStudents, int newCurrentEnrollment){
+	public CourseAL(String newCourseName, int newMaxNumStudents, int newCurrentEnrollment){
 		courseName = newCourseName;
 		if (newMaxNumStudents > 0){
 			maxNumStudents = newMaxNumStudents;
@@ -29,8 +30,9 @@ public class Course {
 		if (newCurrentEnrollment >= 0){
 			currentEnrollment = newCurrentEnrollment;
 		} 
-		roster = new Student[newMaxNumStudents];
+		rosterlist = new ArrayList<Student>();
 		index = 0;
+		numStudentsInArray = 0;
 	}
 	
 	//getters and setters
@@ -62,8 +64,7 @@ public class Course {
 		boolean successfulAdd;
 		
 		if (currentEnrollment< maxNumStudents){
-			roster[index] = s;
-			index++;
+			rosterlist.add(s);
 			currentEnrollment++;
 			successfulAdd = true;
 		} else {
@@ -77,23 +78,15 @@ public class Course {
 	public boolean dropStudent(Student s)
 	{
 		boolean successfulDrop = false;
-		int drop_index = 0 ;
-		for(int i = 0; i < currentEnrollment; i++)
+		if(rosterlist.contains(s))
 		{
-			if (roster[i] == s)
-			{
-				drop_index += i;
-				currentEnrollment--;
-				
-				successfulDrop = true;
-			}
+			rosterlist.remove(s);
+			currentEnrollment--;
+			successfulDrop = true;
 		}
-		for(int j = drop_index; j < currentEnrollment; j++)
-		{
-				roster[j] = roster[j+1];
-		}
-		roster[currentEnrollment] = null;
-		index = currentEnrollment;
+		else
+			System.out.println("Item not found.");
+
  		
 		return successfulDrop;
 	}
@@ -101,18 +94,20 @@ public class Course {
 		   
 		   //print out number of students enrolled
 		   System.out.println("There are " + currentEnrollment + " students currently enrolled in the class");
-		   
-		   //check if there are no students
 		   if(currentEnrollment == 0)
 		   {
 		        System.out.println("Error. There is no student enrolled yet.");    
 		   }
+		   else
+		   {
+			   for(Student item: rosterlist)
+				   System.out.println(item.toString());
+		   }
+		   //check if there are no students
+		   
 		   
 		   //print out text representation of each of the student objects
-		   for (int i = 0; i < currentEnrollment; i++){
-			   System.out.println(roster[i].toString());
-			   
-		   }
+		   
 		   
 	}
 	
@@ -123,3 +118,4 @@ public class Course {
 	}
 
 }
+
