@@ -12,20 +12,18 @@ public class Course {
 	private int currentEnrollment;
 	private int maxNumStudents;
 	private int index;
-	private int numStudentsInArray;
 	
 	//constructor
-	public Course(String newCourseName, int newMaxNumStudents, int newCurrentEnrollment){
-		courseName = newCourseName;
-		if (newMaxNumStudents > 0){
-			maxNumStudents = newMaxNumStudents;
+	public Course(String initialCourseName, int initialMaxNumStudents, int initialCurrentEnrollment){
+		courseName = initialCourseName;
+		if (initialMaxNumStudents > 0){
+			maxNumStudents = initialMaxNumStudents;
 		} 
-		if (newCurrentEnrollment >= 0){
-			currentEnrollment = newCurrentEnrollment;
+		if (initialCurrentEnrollment >= 0){
+			currentEnrollment = initialCurrentEnrollment;
 		} 
-		roster = new Student[newMaxNumStudents];
+		roster = new Student[initialMaxNumStudents];
 		index = 0;
-		numStudentsInArray = 0;
 	}
 	
 	//getters and setters
@@ -56,10 +54,10 @@ public class Course {
 	public boolean addStudent (Student s){
 		boolean successfulAdd;
 		
-		if (numStudentsInArray < maxNumStudents){
+		if (currentEnrollment < maxNumStudents){
 			roster[index] = s;
 			index++;
-			numStudentsInArray++;
+			currentEnrollment++;
 			successfulAdd = true;
 		} else {
 			successfulAdd = false;
@@ -80,7 +78,7 @@ public class Course {
 		   }
 		   
 		   //print out text representation of each of the student objects
-		   for (int i = 0; i < numStudentsInArray; i++){
+		   for (int i = 0; i < currentEnrollment; i++){
 			   System.out.print(roster[i].toString());
 		   }
 		   
