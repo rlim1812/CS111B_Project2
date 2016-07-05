@@ -4,6 +4,7 @@
  * Yu-Hsiang Huang
  * Anthony Wong
  * 
+ * our program is currently running with CourseAL
  */
 public class Driver {
 
@@ -16,27 +17,36 @@ public class Driver {
 		student[3] = new Student("Doris Day", "S512", true);
 		student[4] = new Student("Emilio Estevez", "S513", true);
 		student[5] = new Student("Farrah Fawcet", "S516", true);
-		//student[6] = new Student("Ethan", "S500", true);
+		
 		CourseAL myCourse = new CourseAL("Media Studies", 5, 0);
-		//myCourse.toString();
+		
+		// prints the course
+		System.out.println(myCourse.toString());
+		System.out.println("");
+		
+		// prints the roster
 		myCourse.printRoster();
+		System.out.println("");
 		
 		myCourse.addStudent(student[0]);
 		myCourse.addStudent(student[1]);
 		myCourse.addStudent(student[2]);
 		myCourse.addStudent(student[3]);
 		myCourse.addStudent(student[4]);
+		
+		// trying to add the 6th student but it will be an error message.
 		myCourse.addStudent(student[5]);
-		//myCourse.addStudent(student[6]);
-		// before dropping
-
-		myCourse.printRoster();
 		
-		// after dropping
-		myCourse.dropStudent(student[1]);
+		//print the roster before dropping one student
 		myCourse.printRoster();
+		System.out.println("");
 		
-		// after adding a new student
+		//print the roster again after dropping the student
+		myCourse.dropStudent(student[2]);
+		myCourse.printRoster();
+		System.out.println("");
+		
+		// print after adding a new student
 		myCourse.addStudent(student[5]);
 		myCourse.printRoster();
 		
